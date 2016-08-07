@@ -30,12 +30,12 @@ Feedback on how to improve this test-and-build processing is encouraged.  We als
 
 ## Development
 
-Community-driven development and enhancement of these assignments are welcome and encouraged.  Please fork this repository and share your contributions to the master with pull requests.
+Community-driven development and enhancement of these assignments is welcomed and encouraged.  Please fork this repository and share your contributions to the master with pull requests.
 
 
 ## Acknowledgments
 
-Although this code was developed primary by Carleton Coffrin, many others have contributed to these assignments, including Pascal Van Hentenryck, Andrea Rendl, Victor Pillac, and Mark Mammel.
+This code was developed primary by Carleton Coffrin, however many others have contributed to these assignments, including Pascal Van Hentenryck, Andrea Rendl, Mark Mammel, and Victor Pillac.
 
 
 ## License
