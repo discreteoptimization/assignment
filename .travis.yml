@@ -9,4 +9,5 @@ install:
 script: 
   - "./save_all.sh"
   - "./test.it"
-
+after_success:
+  - "codecov -t 7f3da6c1-f9f9-449a-a145-b09f060336ed"
