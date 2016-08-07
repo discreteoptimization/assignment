@@ -418,9 +418,9 @@ def build_parser():
         description='''The submission script for Discrete Optimization 
             assignments on the Coursera Platform.''',
         epilog='''Please file bugs on github at: 
-        https://github.com/discreteoptimization/submission/issues. If you 
+        https://github.com/discreteoptimization/assignment/issues. If you 
         would like to contribute to this tool's development, check it out at: 
-        https://github.com/discreteoptimization/submission'''
+        https://github.com/discreteoptimization/assignment'''
     )
 
     parser.add_argument('-v', '--version', action='version', 
