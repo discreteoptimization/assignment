@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+
+
+\usepackage{amsfonts}
+\usepackage{fancyvrb}
+\usepackage{url}
+
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\headsep}{0.5in}
+\setlength{\textheight}{8.5in}
+\setcounter{page}{1}
+%\pagestyle{empty}
+%\hbadness=10000
+
+\begin{document}
+\huge
+\noindent
+{Discrete Optimization Assignment:}
+\vspace{0.25cm}
+
+\noindent
+{\bf Knapsack}
+\normalsize
+
+
+\section{Problem Statement}
+
+In this assignment you will design an algorithm to solve the infamous {\em Knapsack Problem}, which plagues Indiana Jones.  You are provided with a knapsack with limited space and a collection of items with different values and weights.  Your task is to maximize the value of items packed into your knapsack without exceeding its total capacity.
+
+\section{Assignment}
+
+Write an algorithm to solve the knapsack problem.  The problem is mathematically formulated in the following way.  Given $n$ items to choose from, each item $i \in 0 \ldots n-1$ has a value $v_i$ and a weight $w_i$.  The knapsack has a limited capacity $K$.  Let $x_i$ be a variable that is $1$ if you choose to take item $i$ and $0$ if you leave item $i$ behind. Then the knapsack problem is formalized as the following optimization problem,
+$$
+\begin{array}{ll}
+\mbox{maximize:} & \displaystyle \sum_{i \in 0 \ldots n-1} v_i x_i \\
+\mbox{subject to:} & \\
+     & \displaystyle \sum_{i \in 0 \ldots n-1} w_i x_i \leq K \\
+     & x_i \in \{0,1\} \;\;\; (i \in 0 \ldots n-1)
+\end{array}
+$$
+
+\section{Data Format Specification}
+
+A knapsack input contains $n+1$ lines.  The first line contains two integers, the first is the number of items in the problem, $n$.  The second number is the capacity of the knapsack, $K$.  The remaining lines present the data for each of the items.  Each line, $i \in 0 \ldots n-1$ contains two integers, the item's value $v_i$ followed by its weight $w_i$.
+
+\vspace{0.2cm}
+\noindent
+Input Format
+\vspace{-0.2cm}
+\begin{Verbatim}[frame=single]
+n K
+v_0 w_0
+v_1 w_1
+...
+v_n-1 w_n-1
+\end{Verbatim}
+%
+The output contains a knapsack solution and is made of two lines.  The first line contains two values $obj$ and $opt$.  $obj$ is the total value of the items selected to go into the knapsack (i.e. the objective value).  $opt$ should be $1$ if your algorithm proved optimality and $0$ otherwise.  The next line is a list of $n$ $0/1$-values, one for each of the $x_i$ variables.  This line encodes the solution.
+\clearpage
+%
+\vspace{0.2cm}
+\noindent
+Output Format
+\vspace{-0.2cm}
+\begin{Verbatim}[frame=single]
+obj opt
+x_0 x_1 x_2 ... x_n-1
+\end{Verbatim}
+%
+It is essential that the value order in the solution output matches the value order of the input.  Otherwise the grader will misinterpret the output.
+
+\paragraph{Examples} \mbox{}
+%\vspace{0.1cm}
+
+\vspace{0.2cm}
+\noindent
+Input Example
+\vspace{-0.2cm}
+\begin{Verbatim}[frame=single]
+4 11
+8 4
+10 5
+15 8
+4 3
+\end{Verbatim}
+
+\vspace{0.2cm}
+\noindent
+Output Example
+\vspace{-0.2cm}
+\begin{Verbatim}[frame=single]
+19 0
+0 0 1 1
+\end{Verbatim}
+
+\section{Instructions}
+
+%Edit \texttt{solver.py} and modify the \texttt{solveIt(inputData)} function to solve the knapsack problem.  The function argument, \texttt{inputData}, contains a knapsack problem in the format described above.  The return value of \texttt{solveIt} is a solution to the problem in the output format described above.  Your \texttt{solveIt} implementation can be tested with the command, 
+%\[ 
+%\texttt{python ./solver.py ./data/<inputFileName>} 
+%\] 
+%You should limit the \texttt{solveIt} method to terminate within 5 hours, otherwise the submission will not be eligible for full credit.  You may choose to implement your solver directly in python or modify the \texttt{solveIt()} function to call an external application.
+
+\input{instructions.tex}
+
+\paragraph{Resources}
+You will find several knapsack instances in the \texttt{data} directory provided with the handout.  \texttt{Solver.java} and \texttt{solverJava.py} are included in this assignment to demonstrate how to implement your assignment in another language.  If you wish to use the Java solver, you will need to rename \texttt{solverJava.py} to \texttt{solver.py}.
+%An example output file, \texttt{blabla.out}, is also provided.
+
+%\section{Remarks}
+
+\input{handin.tex}
+
+\input{grading.tex}
+
+\input{collaboration.tex}
+
+%\paragraph{Questions} Please contact the class GTA Carleton (cjc@cs.brown.edu).
+
+\input{warnings.tex}
+
+%\paragraph{Warnings} 
+%
+%\begin{enumerate}
+%\item It is recommended you do not modify the \texttt{data} directory.  Modifying the files in the data directory risks
+%making your assignment submissions incorrect.
+%\item You cannot rename the \texttt{solver.py} file.
+%\item \texttt{solver.py} must remain in the same directory as  \texttt{submit.pyc}.
+%\end{enumerate}
+
+\input{techReqs.tex}
+
+\end{document}
+
+
+
+

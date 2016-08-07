@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#TODO add building output files for all assignments
+
+#python -m pytest --cov submit.py --cov do_grader.py --cov do_grader_lib.py \
+py.test --cov submit.py --cov do_grader.py --cov do_grader_lib.py \
+  --cov screenname/grader.py  --cov knapsack/grader.py --cov coloring/grader.py \
+  --cov tsp/grader.py --cov facility/grader.py --cov vrp/grader.py \
+  --cov setcover/grader.py \
+  --cov screenname/solver.py  --cov knapsack/solver.py --cov coloring/solver.py \
+  --cov tsp/solver.py --cov facility/solver.py --cov vrp/solver.py \
+  --cov setcover/solver.py \
+  --cov-report=html $@
+
+# py.test --cov submit.py --cov do_grader.py --cov do_grader_lib.py \
+#   --cov screenname/solver.py --cov screenname/grader.py \ 
+#   --cov knapsack/solver.py --cov knapsack/grader.py \
+#   --cov coloring/solver.py --cov coloring/grader.py \
+#   --cov tsp/solver.py --cov tsp/grader.py \
+#   --cov facility/solver.py --cov facility/grader.py \
+#   --cov vrp/solver.py --cov vrp/grader.py \
+#   --cov setcover/solver.py --cov setcover/grader.py \
+#   --cov-report=html $@ 
+
+# py.test submit.py do_grader.py do_grader_lib.py \
+#   screenname/solver.py  screenname/grader.py \ 
+#   knapsack/solver.py knapsack/grader.py \
+#   coloring/solver.py coloring/grader.py \
+#   tsp/solver.py tsp/grader.py \
+#   facility/solver.py facility/grader.py \
+#   vrp/solver.py vrp/grader.py \
+#   setcover/solver.py setcover/grader.py \
+#   --cov-report=html $@ 
+
+#py.test --cov-config .coveragerc --cov-report=html $@
