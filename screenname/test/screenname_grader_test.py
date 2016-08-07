@@ -19,7 +19,7 @@ def test_full_credit_two():
     assert(result['score'] == 1.0)
 
 def test_full_credit_three():
-    result = grader.grade(input_data, quality, 'abc ◊ def\n123\n')
+    result = grader.grade(input_data, quality, u'abc \u2220 def\n123\n')
     assert(result['score'] == 0.0)
 
 def test_full_credit_long_one():
