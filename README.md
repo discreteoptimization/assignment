@@ -24,6 +24,7 @@ The handouts zips are placed in the "started_files" directory.
 The grader zip is placed int he "docker" directory.
 Inside the "docker" directory `build.sh` provides the basic instructions for deploying a Cousera docker container.
 Once the docker container is built, `grade_in_container.py` can be used to test the containerized grader on all of the submissions that were "saved" with the `save_all.sh` script.
+If this test passes, `post.sh` can be used by a course administrator to update all of the assignment graders.
 
 Feedback on how to improve this test-and-build processing is encouraged.  We also welcome other classes to use this code as a basis for developing their own customer grading framework.
 
