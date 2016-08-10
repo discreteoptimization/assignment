@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/discreteoptimization/assignment.svg?branch=master)](https://travis-ci.org/discreteoptimization/assignment)
 [![codecov](https://codecov.io/gh/discreteoptimization/assignment/branch/master/graph/badge.svg)](https://codecov.io/gh/discreteoptimization/assignment)
 
-This repository includes all of the tools required for building, deploying, and grading the assignments in the Discrete Optimization course on Coursera (on the 2nd generation platform).  The code for submission and grading are build on  uses Python and are compatible with version 2 and 3.  The python unit testing framework pytest and pytest-cov are used to ensure quality control.  Build scripts are used to automatically build student handouts in the form of zip files and a Coursera compliant docker image for grading submissions.
+This repository includes all of the tools required for building, deploying, and grading the assignments in the Discrete Optimization course on Coursera (on the 2nd generation platform).  The code for submission and grading are build in Python and are compatible with versions 2 and 3.  The python unit testing framework pytest and pytest-cov are used to ensure quality control.  Build scripts are used to automatically build student handouts, in the form of zip files, and a Coursera compliant docker image for grading submissions.
 
 
 ## Installation
@@ -36,7 +36,9 @@ Community-driven development and enhancement of these assignments is welcomed an
 
 ## Acknowledgments
 
-This code was developed primary by Carleton Coffrin, however many others have contributed to these assignments, including Pascal Van Hentenryck, Andrea Rendl, Mark Mammel, and Victor Pillac.
+The assignments presented here were inspired by those used in "Solving Hard Problems in Combinatorial Optimization" (i.e. CS 258), a course which Pascal Van Hentenryck developed at Brown University for more than ten years.
+
+This implementation was developed primary by Carleton Coffrin, however many others have contributed to these assignments, including Pascal Van Hentenryck, Andrea Rendl, Mark Mammel, and Victor Pillac.
 
 
 ## License
