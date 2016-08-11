@@ -3,7 +3,7 @@ cd handouts
 cd ..
 
 
-cd screenname
+cd anyint
   ./build.sh
 cd ..
 
@@ -35,7 +35,7 @@ cd ..
 rm docker/do_grader.zip
 
 zip do_grader.zip do_grader.py do_grader_lib.py \
-  screenname/_coursera screenname/_metadata_grader screenname/grader.py \
+  anyint/_coursera anyint/_metadata_grader anyint/grader.py \
   knapsack/_coursera knapsack/_metadata_grader knapsack/grader.py knapsack/data/ks_* \
   coloring/_coursera coloring/_metadata_grader coloring/grader.py coloring/data/gc_* \
   facility/_coursera facility/_metadata_grader facility/grader.py facility/data/fl_* \

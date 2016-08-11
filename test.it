@@ -1,15 +1,15 @@
 #!/bin/bash
 
 py.test --cov submit.py --cov do_grader.py --cov do_grader_lib.py \
-  --cov screenname/grader.py  --cov knapsack/grader.py --cov coloring/grader.py \
+  --cov anyint/grader.py  --cov knapsack/grader.py --cov coloring/grader.py \
   --cov tsp/grader.py --cov facility/grader.py --cov vrp/grader.py \
   --cov setcover/grader.py \
-  --cov screenname/solver.py  --cov knapsack/solver.py --cov coloring/solver.py \
+  --cov anyint/solver.py  --cov knapsack/solver.py --cov coloring/solver.py \
   --cov tsp/solver.py --cov facility/solver.py --cov vrp/solver.py \
   --cov setcover/solver.py $@
 
 # py.test --cov submit.py --cov do_grader.py --cov do_grader_lib.py \
-#   --cov screenname/solver.py --cov screenname/grader.py \ 
+#   --cov anyint/solver.py --cov anyint/grader.py \ 
 #   --cov knapsack/solver.py --cov knapsack/grader.py \
 #   --cov coloring/solver.py --cov coloring/grader.py \
 #   --cov tsp/solver.py --cov tsp/grader.py \
@@ -19,7 +19,7 @@ py.test --cov submit.py --cov do_grader.py --cov do_grader_lib.py \
 #   --cov-report=html $@ 
 
 # py.test submit.py do_grader.py do_grader_lib.py \
-#   screenname/solver.py  screenname/grader.py \ 
+#   anyint/solver.py  anyint/grader.py \ 
 #   knapsack/solver.py knapsack/grader.py \
 #   coloring/solver.py coloring/grader.py \
 #   tsp/solver.py tsp/grader.py \

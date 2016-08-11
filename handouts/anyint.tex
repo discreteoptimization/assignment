@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+
+
+\usepackage{amsfonts}
+\usepackage{url}
+
+
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\headsep}{0.5in}
+\setlength{\textheight}{8.5in}
+\setcounter{page}{1}
+%\pagestyle{empty}
+%\hbadness=10000
+
+
+\begin{document}
+\huge
+\noindent
+{Discrete Optimization Assignment:}
+\vspace{0.25cm}
+
+\noindent
+{\bf Any Integer}
+\normalsize
+
+
+\section{Problem Statement}
+This assignment is designed to familiarize you with the programming assignment infrastructure.  All of the assignments in this class involve writing an optimization algorithm (i.e. a program) and submitting your results with the provided submission script.  In this assignment, you will write a very simple program to submit a {\em positive integer} of your choice to the course.  Your grade on this assignment will be determined by the size of the integer you submit to the grader. 
+
+\section{Assignment}
+
+Write an algorithm to submit a positive integer to the course.  Try submitting different integers in the range from -10 to 10 to see how the grader feedback changes based on the number you submit.
+
+\section{Data Format Specification}
+
+The output is one line containing your integer, $i$.
+%
+\begin{verbatim}[Output Format]
+i
+\end{verbatim}
+%
+
+\paragraph{Examples}
+
+\begin{verbatim}[Output Example]
+-3
+\end{verbatim}
+
+\begin{verbatim}[Output Example]
+1
+\end{verbatim}
+
+\begin{verbatim}[Output Example]
+3
+\end{verbatim}
+
+\section{Instructions}
+
+Edit \texttt{solver.py} and modify the \texttt{solve\_it()} function to return your integer.  Your \texttt{solve\_it} implementation can be tested with the command \texttt{python ./solver.py}
+
+\paragraph{Handin}
+Run \texttt{submit.py} with the command,
+\texttt{python ./submit.py}\\
+Follow the instructions to submit your integer and return to the Coursera website to view your results.  There is no penalty for multiple submissions.  However, it may take several minutes for your grade to appear on the website.
+
+\input{techReqs.tex}
+
+\end{document}
+
+
+
+
