@@ -8,7 +8,7 @@ def grade(input_data, quality_data, submission):
 
     #print(submission)
     #print(subLines)
-    if(len(subLines) != 3) :
+    if(len(subLines) < 2) :
         return {'score':0.0, 'feedback':'output should have 1 lines, this one has '+str(len(subLines)-1)}
 
     try:

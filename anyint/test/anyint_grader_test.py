@@ -44,7 +44,7 @@ def test_number_line_short():
 
 def test_line_count_long():
     result = grader.grade(input_data, quality, '0\n 10\n 123\n')
-    assert(result['score'] == 0.0)
+    assert(result['score'] == 0.3)
 
 def test_line_count_short():
     result = grader.grade(input_data, quality, '123\n')
