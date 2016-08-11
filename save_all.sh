@@ -1,4 +1,4 @@
-cd screenname
+cd anyint
   ../submit.py -rs <<< 0 
 cd ..
 

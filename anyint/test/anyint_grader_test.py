@@ -3,7 +3,7 @@ import sys, os, pytest
 sys.path.append(os.getcwd())
 
 from do_grader_lib import PartQuality
-from screenname import grader
+from anyint import grader
 
 input_data = ''
 quality = PartQuality('test', 0, 0)
