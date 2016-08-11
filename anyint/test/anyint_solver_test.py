@@ -9,4 +9,4 @@ input_data = ''
 
 def test_solver():
     result = solver.solve_it(input_data)
-    assert(result == 'I_R a-N00B')
+    assert(result == '0')

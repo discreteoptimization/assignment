@@ -4,26 +4,35 @@ def grade(input_data, quality_data, submission):
     score = 0.0
     feedback = ''
 
-    lines = submission.split('\n')
+    subLines = submission.split('\n')
 
-    if(len(lines) > 3) :
-        return {'score':0.0, 'feedback':'output should have no more than 2 lines, this one has '+str(len(lines)-1)}
+    #print(submission)
+    #print(subLines)
+    if(len(subLines) != 3) :
+        return {'score':0.0, 'feedback':'output should have 1 lines, this one has '+str(len(subLines)-1)}
 
-    first_line = lines[0].strip()
-    if len(first_line) <= 0:
-        return {'score':0.0, 'feedback':'empty screen name submitted'}
+    try:
+        value = int(subLines[0].strip())
+    except (ValueError, TypeError):
+        return {'score':0.0, 'feedback':'the first output line should only contain one integer, this output has the following bad value: '+subLines[0].strip()}
 
-    if len(first_line) > 40:
-        return {'score':0.0, 'feedback':'the submitted screen name was too long. Submitted name was '+str(len(first_line))+' characters long but only 40 characters or less are permitted. Try submitting a shorter screen name.'}
+    try:
+        runtime = float(subLines[1])
+    except (ValueError, TypeError):
+        return {'score': 0,'feedback': 'The evaluation script has failed with error code (2).  Sorry for the inconvenience.  Please post this message in the \'Platform Feedback\' forum.'+feedback}
 
-    #try:
-    #    first_line = first_line.decode('ascii')
-    #except UnicodeDecodeError:
-    #    return {'score':0.0, 'feedback':'the submitted screen name contains non-ASCII characters. Only ASCII characters are allowed. Try submitting a different screen name.'}
 
-    if not re.match(r'^[ \w-]+$', first_line):
-        return {'score':0.0, 'feedback':'the submitted screen name \''+first_line+'\' contains invalid characters. Only alpha numerical characters, dashes, and underscores are allowed. Try submitting a different screen name.'}
+    if value < 0:
+        return {'score':0.0, 'feedback':'the integer you submitted '+str(value)+' does not meet the requirement of being a positive number.'}
 
-    return {'score':1.0, 'feedback':'Congratulations! Your screen name has been set to '+first_line+'.'+feedback}
+
+    if(value >= quality_data.pt10):
+        return {'score':1.0, 'feedback':'Awesome job, the value of '+str(value)+' is sufficient for full credit! '+feedback}
+    elif(value >= quality_data.pt3):
+        return {'score':0.7, 'feedback':'Your submission output is correct, but the value of '+str(value)+' is insufficient for full credit. For a higher grade, you will need to submit an integer of size '+str(quality_data.pt10)+' or larger. '+feedback}
+    else:
+        return {'score':0.3, 'feedback':'Your submission output is correct, but the value of '+str(value)+' is insufficient for full credit. For a higher grade, you will need to submit an integer of size '+str(quality_data.pt3)+' or larger. '+feedback}
+
+    return {'score':0.0, 'feedback': 'The evaluation script has failed with error code (1).  Sorry for the inconvenience.  Please post this message in the \'Platform Feedback\' forum.'+feedback}
 
 
