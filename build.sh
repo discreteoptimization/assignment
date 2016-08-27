@@ -1,3 +1,5 @@
+rm starter_files/*.zip
+
 cd handouts
   ./clean.sh
 cd ..
