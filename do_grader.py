@@ -127,6 +127,7 @@ def load_metadata_lookup():
 
     return metadata_lookup
 
+
 def main(part_id, user_id, orginial_filename, submission_location):
     metadata_lookup = load_metadata_lookup()
 
@@ -149,32 +150,37 @@ def main(part_id, user_id, orginial_filename, submission_location):
     os.chdir('..')
 
 
-if __name__ == '__main__':  # added to allow importing of the grader function for testing.
+def parse_sys_args(argv):
+    print(argv)
     part_id = None
     user_id = None
     orginial_filename = None
     submission_location = '/shared/submission/submission.sub'
 
-    #print(sys.argv)
-    if len(sys.argv) <= 1:
+    #print(argv)
+    if len(argv) <= 1:
         print_stderr('no command line arguments given!!!!')
         quit()
 
-    for i in range(len(sys.argv)):
-        if 'partId' in sys.argv[i] and i+1 < len(sys.argv):
-            part_id = sys.argv[i+1]
-        if 'userId' in sys.argv[i] and i+1 < len(sys.argv):
-            user_id = sys.argv[i+1]
-        if 'filename' in sys.argv[i] and i+1 < len(sys.argv):
-            orginial_filename = sys.argv[i+1]
-        if 'override_sub' in sys.argv[i] and i+1 < len(sys.argv):
-            submission_location = sys.argv[i+1]
+    for i in range(len(argv)):
+        if 'partId' in argv[i] and i+1 < len(argv):
+            part_id = argv[i+1]
+        if 'userId' in argv[i] and i+1 < len(argv):
+            user_id = argv[i+1]
+        if 'filename' in argv[i] and i+1 < len(argv):
+            orginial_filename = argv[i+1]
+        if 'override_sub' in argv[i] and i+1 < len(argv):
+            submission_location = argv[i+1]
 
     if part_id is None:
         print_stderr('no part id found!!!!')
         quit()
 
-    main(part_id, user_id, orginial_filename, submission_location)
+    return part_id, user_id, orginial_filename, submission_location
+
+
+if __name__ == '__main__':
+    main(*parse_sys_args(sys.argv))
 
 
 

@@ -31,3 +31,33 @@ def test_001(submission_dir):
     # # need to set warnings back to default
     # # otherwise tests using pytest.warns will fail
     # warnings.resetwarnings()
+
+def test_default_values():
+    argv = ['partId', '1']
+    part_id, user_id, orginial_filename, submission_location = do_grader.parse_sys_args(argv)
+
+    assert(part_id == '1')
+    assert(user_id == None)
+    assert(orginial_filename == None)
+    assert(submission_location == '/shared/submission/submission.sub')
+
+def test_non_default_values():
+    argv = ['filename', '3', 'override_sub', '4', 'partId', '1', 'userId', '2']
+
+    part_id, user_id, orginial_filename, submission_location = do_grader.parse_sys_args(argv)
+
+    assert(part_id == '1')
+    assert(user_id == '2')
+    assert(orginial_filename == '3')
+    assert(submission_location == '4')
+
+
+def test_no_values():
+    argv = []
+    with pytest.raises(SystemExit):
+        part_id, user_id, orginial_filename, submission_location = do_grader.parse_sys_args(argv)
+
+def test_no_partid():
+    argv = ['filename', '3']
+    with pytest.raises(SystemExit):
+        part_id, user_id, orginial_filename, submission_location = do_grader.parse_sys_args(argv)

@@ -444,6 +444,7 @@ def build_parser():
 
     parser.add_argument('-rs', '--record_submission', 
         help='records the submission(s) as files', action='store_true')
+
     return parser
 
 
