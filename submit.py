@@ -163,6 +163,14 @@ def compute(metadata, solver_file_override=None):
             print('Unable to locate assignment file "%s" in the current working directory.' % solver_file)
             continue
 
+        # if a relative path is given, add that patth to system path so import will work
+        if os.path.sep in solver_file:
+            split = solver_file.rfind(os.path.sep)
+            path = solver_file[0:split]
+            file_name = solver_file[split+1:]
+            sys.path.insert(0, path)
+            solver_file = file_name
+
         submission = output(problem.input_file, solver_file)
         if submission != None:
             results[problem.id] = {'output':submission}
@@ -191,13 +199,12 @@ def output(input_file, solver_file):
     '''
 
     try:
-        #TODO make sure this is of the form name.py, no relative path
         pkg = __import__(solver_file.strip('.py'))
         if not hasattr(pkg, 'solve_it'):
             print('the solve_it() function was not found in %s' % solver_file)
             quit()
     except ImportError:
-        print('%s was not found in current working directory.' % solver_file)
+        print('import error with python file "%s".' % solver_file)
         quit()
 
 

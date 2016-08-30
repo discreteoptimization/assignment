@@ -10,7 +10,7 @@ from io import StringIO
 class TestCorrectMetadata:
     def test_001(self):
         meta_data = submit.load_metadata('test/_coursera')
-        assert len(meta_data.part_data) == 2
+        assert len(meta_data.part_data) == 6
 
 class TestBrokenMetadata:
     # file not found
@@ -37,7 +37,7 @@ class TestLogin:
     def test_002(self):
         login, token = submit.login_prompt('test/_credentials')
         assert(login == 'cj@coffr.in')
-        assert(token == 'TsuNwpwi3myBLZXg')
+        assert(token == '0GHf4Kfxa2CFWJoK')
 
     # testing manual override when credentials file is incorrect
     # def test_003(self, capfd):
@@ -89,34 +89,41 @@ class TestPartsPrompt:
         assert(len(problems) == len(self.metadata.part_data))
 
 
-# class TestProblemSubmission:
-#     def setup_class(self):
-#         self.parser = submit.build_parser()
+class TestProblemSubmission:
+    def setup_class(self):
+        self.parser = submit.build_parser()
 
-#     # tests problem selection
-#     def test_001(self, capfd):
-#         sys.stdin = StringIO(u'1\n')
-#         submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
+    # # tests problem selection
+    # def test_001(self, capfd):
+    #     sys.stdin = StringIO(u'1\n')
+    #     submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
 
-#         output = 'Unable to locate assignment file'
-#         resout, reserr = capfd.readouterr()
-#         assert(output in resout)
+    #     output = 'Unable to locate assignment file'
+    #     resout, reserr = capfd.readouterr()
+    #     assert(output in resout)
 
-#     # tests running a problem
-#     def test_002(self, capfd):
-#         sys.stdin = StringIO(u'1\n')
-#         submit.main(self.parser.parse_args(['-o', './test/model/model.mzn', '-m', './test/_coursera', '-c', './test/_credentials']))
+    # tests running a problem
+    def test_002(self, capfd):
+        sys.stdin = StringIO(u'1\n')
+        submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
 
-#         resout, reserr = capfd.readouterr()
-#         assert(output_worked in resout)
+        resout, reserr = capfd.readouterr()
+        assert(output_worked in resout)
 
-#     # tests running a problem in record mode
-#     def test_003(self, capfd):
-#         sys.stdin = StringIO(u'1\n')
-#         submit.main(self.parser.parse_args(['-o', './test/model/model.mzn', '-rs', '-m', './test/_coursera', '-c', './test/_credentials']))
+    # tests running a problem in record mode
+    def test_003(self, capfd):
+        sys.stdin = StringIO(u'1\n')
+        submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials', '-rs']))
 
-#         resout, reserr = capfd.readouterr()
-#         assert(output_worked in resout)
+        output = 'writting submission file: _awPVV'
+        resout, reserr = capfd.readouterr()
+        assert(output in resout)
+        assert(not output_worked in resout)
+
+        os.remove('_awPVV/submission.sub')
+        os.rmdir('_awPVV')
+
+
 
 
 # class TestBrokenSubmission:
