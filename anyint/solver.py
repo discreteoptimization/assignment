@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 def solve_it(input_data):
-    # return an integer that is the number of points you would like to get
+    # return a positive integer
     return '0'
 
 if __name__ == '__main__':
