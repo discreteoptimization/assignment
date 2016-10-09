@@ -123,6 +123,21 @@ class TestProblemSubmission:
         os.remove('_awPVV/submission.sub')
         os.rmdir('_awPVV')
 
+    # tests running a solver with a int return value
+    def test_004(self, capfd):
+        sys.stdin = StringIO(u'2\n')
+        submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
+
+        resout, reserr = capfd.readouterr()
+        assert(output_worked in resout)
+
+    # tests running a solver with a unicode return value
+    def test_005(self, capfd):
+        sys.stdin = StringIO(u'3\n')
+        submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
+
+        resout, reserr = capfd.readouterr()
+        assert(output_worked in resout)
 
 
 

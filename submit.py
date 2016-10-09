@@ -32,6 +32,10 @@ if sys.version_info < (3, 0):
     def input(str):
         return raw_input(str)
 
+# Python 3, backward compatibility with unicode test
+if sys.version_info >= (3, 0):
+    unicode = type(str)
+
 version = '1.0.0'
 submitt_url = \
     'https://www.coursera.org/api/onDemandProgrammingScriptSubmissions.v1'
@@ -222,11 +226,9 @@ def output(input_file, solver_file):
         return 'Local Exception =('
     end = time.clock()
 
-    if not isinstance(solution, str):
-        print('Warning: the submitted solution was not ASCII and will be converted.  Some information may be lost.')
-        print('Orginal: ')
-        print(solution)
-        solution = solution.encode('ascii', 'ignore')
+    if not (isinstance(solution, str) or isinstance(solution, unicode)):
+        print('Warning: the solver did not return a string.  The given object will be converted with the str() method.')
+        solution = str(solution)
 
     print('Submitting: ')
     print(solution)
