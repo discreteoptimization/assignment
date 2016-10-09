@@ -125,20 +125,30 @@ class TestProblemSubmission:
 
     # tests running a solver with a int return value
     def test_004(self, capfd):
-        sys.stdin = StringIO(u'2\n')
-        submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
+        # sys.stdin = StringIO(u'2\n')
+        # submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
+
+        # resout, reserr = capfd.readouterr()
+        # assert(output_worked in resout)
+        
+        sys.path.insert(0, 'test/solver')
+        submission = submit.output('./test/_empty', 'int_val_solver.py')
+        assert('0' in submission)
 
         resout, reserr = capfd.readouterr()
-        assert(output_worked in resout)
+        assert('Warning' in resout)
 
     # tests running a solver with a unicode return value
     def test_005(self, capfd):
-        sys.stdin = StringIO(u'3\n')
-        submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
+        # sys.stdin = StringIO(u'3\n')
+        # submit.main(self.parser.parse_args(['-m', './test/_coursera', '-c', './test/_credentials']))
 
-        resout, reserr = capfd.readouterr()
-        assert(output_worked in resout)
+        # resout, reserr = capfd.readouterr()
+        # assert(output_worked in resout)
 
+        sys.path.insert(0, 'test/solver')
+        submission = submit.output('./test/_empty', 'unicode_solver.py')
+        assert(u'\u03BB' in submission)
 
 
 # class TestBrokenSubmission:
