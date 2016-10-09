@@ -1,8 +1,8 @@
 _le-pVv_EeasJA5dVmWj2w
 Knapsack Test!
 awPVV, ./knapsack/data/ks_30_0, knapsack/solver.py, Knapsack Problem 1
-hHYWS, ./knapsack/data/ks_50_0, knapsack/solver.py, Knapsack Problem 2
-JwWnx, ./knapsack/data/ks_200_0, knapsack/solver.py, Knapsack Problem 3
+hHYWS, ./test/_empty, test/solver/int_val_solver.py, Int Val Test
+JwWnx, ./test/_empty, test/solver/unicode_solver.py, Unicode Test
 Z2tMt, ./knapsack/data/ks_400_0, knapsack/solver.py, Knapsack Problem 4
 PUIxa, ./knapsack/data/ks_1000_0, knapsack/solver.py, Knapsack Problem 5
 AKXWc, ./knapsack/data/ks_10000_0, knapsack/solver.py, Knapsack Problem 6
