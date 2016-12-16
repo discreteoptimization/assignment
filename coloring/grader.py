@@ -57,13 +57,6 @@ def grade(input_data, quality_data, submission):
 
     colors = lineTwoParts
 
-    colorCount = {}
-    for c in colors:
-        if c in colorCount :
-            colorCount[c] = colorCount[c] + 1
-        else :
-            colorCount[c] = 1
-
     colorViolations = ''
     for edge in edges:
         if(colors[edge[0]] == colors[edge[1]]):
@@ -71,7 +64,7 @@ def grade(input_data, quality_data, submission):
     if(len(colorViolations) > 1):
         return {'score':0.0, 'feedback':'the different color constraint was not satisfied on the following edges: '+colorViolations}
 
-    value = len(colorCount)
+    value = len(set(colors))
     if value != obj :
         feedback = feedback + '\nWarning: submitted objective value is inconsistent with actual value. given: '+str(obj)+' actual value: '+str(value)
 
