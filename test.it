@@ -1,31 +1,31 @@
 #!/bin/bash
 
-py.test --cov submit.py --cov do_grader.py --cov do_grader_lib.py \
-  --cov anyint/grader.py  --cov knapsack/grader.py --cov coloring/grader.py \
-  --cov tsp/grader.py --cov facility/grader.py --cov vrp/grader.py \
-  --cov setcover/grader.py \
-  --cov anyint/solver.py  --cov knapsack/solver.py --cov coloring/solver.py \
-  --cov tsp/solver.py --cov facility/solver.py --cov vrp/solver.py \
-  --cov setcover/solver.py $@
+py.test --cov submit --cov do_grader --cov do_grader_lib \
+  --cov anyint.grader  --cov knapsack.grader --cov coloring.grader \
+  --cov tsp.grader --cov facility.grader --cov vrp.grader \
+  --cov setcover.grader \
+  --cov anyint.solver  --cov knapsack.solver --cov coloring.solver \
+  --cov tsp.solver --cov facility.solver --cov vrp.solver \
+  --cov setcover.solver $@
 
-# py.test --cov submit.py --cov do_grader.py --cov do_grader_lib.py \
-#   --cov anyint/solver.py --cov anyint/grader.py \ 
-#   --cov knapsack/solver.py --cov knapsack/grader.py \
-#   --cov coloring/solver.py --cov coloring/grader.py \
-#   --cov tsp/solver.py --cov tsp/grader.py \
-#   --cov facility/solver.py --cov facility/grader.py \
-#   --cov vrp/solver.py --cov vrp/grader.py \
-#   --cov setcover/solver.py --cov setcover/grader.py \
+# py.test --cov submit --cov do_grader --cov do_grader_lib \
+#   --cov anyint/solver --cov anyint/grader \ 
+#   --cov knapsack/solver --cov knapsack/grader \
+#   --cov coloring/solver --cov coloring/grader \
+#   --cov tsp/solver --cov tsp/grader \
+#   --cov facility/solver --cov facility/grader \
+#   --cov vrp/solver --cov vrp/grader \
+#   --cov setcover/solver --cov setcover/grader \
 #   --cov-report=html $@ 
 
-# py.test submit.py do_grader.py do_grader_lib.py \
-#   anyint/solver.py  anyint/grader.py \ 
-#   knapsack/solver.py knapsack/grader.py \
-#   coloring/solver.py coloring/grader.py \
-#   tsp/solver.py tsp/grader.py \
-#   facility/solver.py facility/grader.py \
-#   vrp/solver.py vrp/grader.py \
-#   setcover/solver.py setcover/grader.py \
+# py.test submit do_grader do_grader_lib \
+#   anyint/solver  anyint/grader \ 
+#   knapsack/solver knapsack/grader \
+#   coloring/solver coloring/grader \
+#   tsp/solver tsp/grader \
+#   facility/solver facility/grader \
+#   vrp/solver vrp/grader \
+#   setcover/solver setcover/grader \
 #   --cov-report=html $@ 
 
 #py.test --cov-config .coveragerc --cov-report=html $@
