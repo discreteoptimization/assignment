@@ -21,7 +21,7 @@ def solve_it(input_data):
         parts = line.split()
         items.append(Item(i-1, int(parts[0]), int(parts[1])))
 
-    # a trivial greedy algorithm for filling the knapsack
+    # a trivial algorithm for filling the knapsack
     # it takes items in-order until the knapsack is full
     value = 0
     weight = 0
