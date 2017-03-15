@@ -43,7 +43,7 @@ def solve_it(input_data):
         capacity_remaining = vehicle_capacity
         while sum([capacity_remaining >= customer.demand for customer in remaining_customers]) > 0:
             used = set()
-            order = sorted(remaining_customers, key=lambda customer: -customer.demand)
+            order = sorted(remaining_customers, key=lambda customer: -customer.demand*customer_count + customer.index)
             for customer in order:
                 if capacity_remaining >= customer.demand:
                     capacity_remaining -= customer.demand

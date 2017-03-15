@@ -10,4 +10,4 @@ with open('vrp/data/vrp_5_4_1', 'r') as input_data_file:
 
 def test_solver():
     result = solver.solve_it(input_data)
-    assert(result == '94.79 0\n0 1 4 2 0\n0 3 0\n0  0\n0  0\n')
+    assert(result == '80.64 0\n0 1 2 3 0\n0 4 0\n0  0\n0  0\n')
