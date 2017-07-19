@@ -84,6 +84,18 @@ def load_metadata(metadata_file_name='_coursera'):
 
     return Metadata(url, name, part_data)
 
+def submission_file_name(sid, prefix = None):
+   '''
+     Retrieve the location of a submission file
+     
+     Args:
+       sid: submission identifier
+       prefix: folder where the submission files are located
+   '''
+   directory = '_'+sid if prefix == None else prefix + os.path.sep + sid;
+   if not os.path.exists(directory):
+      os.makedirs(directory)
+   return directory + os.path.sep + 'submission.sub';
 
 def part_prompt(problems):
     '''
@@ -155,7 +167,7 @@ def compute(metadata, solver_file_override=None):
     results = {}
 
     #submission needs empty dict for every assignment part
-    results.update({prob_data.id : {} for prob_data in metadata.part_data})
+    results.update(dict((prob_data.id, {}) for prob_data in metadata.part_data));
 
     for problem in selected_problems:
         if solver_file_override != None:
@@ -183,6 +195,29 @@ def compute(metadata, solver_file_override=None):
 
     return results
 
+
+def load_solutions(metadata, results_dir):
+  '''
+    Determines which assignment parts the student would like to submit.
+    Then loads his/her answers to those assignment parts
+
+    Args:
+        metadata:  the assignment metadata
+        results_dir: a folder from which the results are loaded
+  '''
+
+  #submission needs empty dict for every assignment part
+  results = dict((prob_data.id, {}) for prob_data in metadata.part_data);
+  selected_problems = part_prompt(metadata.part_data);
+
+  for problem in selected_problems:
+    results_file = submission_file_name(problem.id, results_dir);
+    if os.path.isfile(results_file):
+      print('Loading file "%s"' % results_file);
+      fh = open(results_file);
+      results[problem.id] = {'output': fh.read() };
+      print('Submitting: ' + results[problem.id]['output'].strip().split()[0]);
+  return results;
 
 def load_input_data(file_location):
     with open(file_location, 'r') as input_data_file:
@@ -230,8 +265,7 @@ def output(input_file, solver_file):
         print('Warning: the solver did not return a string.  The given object will be converted with the str() method.')
         solution = str(solution)
 
-    print('Submitting: ')
-    print(solution)
+    print('Submitting: ' + solution.strip().split()[0]);
 
     return solution.strip() + '\n' + str(end - start)
 
@@ -383,24 +417,25 @@ def main(args):
 
     print('==\n== '+metadata.name+' Solution Submission \n==')
     
-    # compute dialog
-    results = compute(metadata, args.override)
-
-    if sum(['output' in v for k,v in results.items()]) <= 0:
+    if((args.submissions_folder == None) or (args.record_submission == True)):
+      # compute solutions if not provided or requested to store solutions
+      results = compute(metadata, args.override)
+    else:
+      # load submissions if provided
+      results = load_solutions(metadata, args.submissions_folder);
+    
+    if all((not 'output' in v) for v in results.itervalues()):
         return
-
+    
     # store submissions if requested
     if args.record_submission == True:
         print('Recording submission as files')
-        for sid, submission in results.items():
+        for sid, submission in results.iteritems():
             if 'output' in submission:
-                directory = '_'+sid
-                if not os.path.exists(directory):
-                    os.makedirs(directory)
-
-                submission_file_name = directory+'/submission.sub'
-                print('  writting submission file: '+submission_file_name)
-                with open(submission_file_name,'w') as submission_file:
+                # default folder remains being '_' + sid
+                fname = submission_file_name(sid, args.submissions_folder);
+                print('  writting submission file: '+fname)
+                with open(fname,'w') as submission_file:
                     submission_file.write(submission['output'])
                     submission_file.close()
         return
@@ -431,6 +466,8 @@ def build_parser():
         would like to contribute to this tool's development, check it out at: 
         https://github.com/discreteoptimization/assignment'''
     )
+    parser.add_argument('-f', '--submissions_folder', 
+        help='only upload file from results folder corresponding to input file');
 
     parser.add_argument('-v', '--version', action='version', 
         version='%(prog)s '+version)
@@ -453,4 +490,3 @@ def build_parser():
 if __name__ == '__main__':
     parser = build_parser()
     main(parser.parse_args())
-
