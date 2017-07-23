@@ -88,7 +88,7 @@ def grade(input_data, quality_data, submission):
             unused.discard(c)
 
     if len(unused) > 0:
-        return {'score':0.0, 'feedback':'the solution is not contain all of the customers in 0..'+str(customerCount-1)+', this solution is missing: '+(', '.join([str(x) for x in unused]))}
+        return {'score':0.0, 'feedback':'the solution does not contain all of the customers in 0..'+str(customerCount-1)+', this solution is missing: '+(', '.join([str(x) for x in unused]))}
 
     totalCustomers = sum([len(vtour)-2 for vtour in tours])
     if totalCustomers != customerCount-1:
