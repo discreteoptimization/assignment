@@ -424,13 +424,13 @@ def main(args):
       # load submissions if provided
       results = load_solutions(metadata, args.submissions_folder);
     
-    if all((not 'output' in v) for v in results.itervalues()):
+    if all((not 'output' in v) for v in results.values()):
         return
     
     # store submissions if requested
     if args.record_submission == True:
         print('Recording submission as files')
-        for sid, submission in results.iteritems():
+        for sid, submission in results.items():
             if 'output' in submission:
                 # default folder remains being '_' + sid
                 fname = submission_file_name(sid, args.submissions_folder);
