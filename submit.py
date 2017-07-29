@@ -43,6 +43,11 @@ submitt_url = \
 Metadata = namedtuple("Metadata", ['assignment_key', 'name', 'part_data'])
 Part = namedtuple("Part", ['id', 'input_file', 'solver_file', 'name'])
 
+email_prompt = 'User Name (e-mail address): '
+token_prompt = 'Submission Token (from the assignment page): '
+email_env_var = 'EMAIL_ADDRESS'
+token_env_var = 'DOTOKEN'
+
 
 def load_metadata(metadata_file_name='_coursera'):
     '''
@@ -297,8 +302,8 @@ def basic_prompt():
     Returns:
         the user's login and token
     '''
-    login = input('User Name (e-mail address): ')
-    token = input('Submission Token (from the assignment page): ')
+    login = os.environ.get(email_env_var) or input(email_prompt)
+    token = os.environ.get(token_env_var) or input(token_prompt)
     return login, token
 
 
