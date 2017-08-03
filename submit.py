@@ -45,8 +45,8 @@ Part = namedtuple("Part", ['id', 'input_file', 'solver_file', 'name'])
 
 email_prompt = 'User Name (e-mail address): '
 token_prompt = 'Submission Token (from the assignment page): '
-email_env_var = 'EMAIL_ADDRESS'
-token_env_var = 'DOTOKEN'
+email_env_var = 'DO_EMAIL_ADDRESS'
+token_env_var = 'DO_TOKEN'
 
 
 def load_metadata(metadata_file_name='_coursera'):
