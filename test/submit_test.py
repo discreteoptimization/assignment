@@ -24,30 +24,74 @@ class TestBrokenMetadata:
             submit.load_metadata('test/_empty')
 
 
-class TestLogin:
-    def setup_class(self):
-        self.parser = submit.build_parser()
+class LoginBase:
+    expected_email_address = 'cj@coffr.in'
+    expected_token = '0GHf4Kfxa2CFWJoK'
+
+    def assert_expectations(self, login, token):
+        assert(login == self.expected_email_address)
+        assert(token == self.expected_token)
+
+
+class TestLogin(LoginBase):
+    # setup_class was only used by test_003 which is commented out.
+    # def setup_class(self):
+    #     self.parser = submit.build_parser()
 
     def test_001(self):
-        sys.stdin = StringIO(u'username\ntoken\n')
-        login, token = submit.login_prompt('')
-        assert(login == 'username')
-        assert(token == 'token')
+        sys.stdin = StringIO(
+            u'{}\n{}\n'.format(
+                self.expected_email_address,
+                self.expected_token
+            )
+        )
+        self.assert_expectations(*submit.login_prompt(''))
 
     def test_002(self):
-        login, token = submit.login_prompt('test/_credentials')
-        assert(login == 'cj@coffr.in')
-        assert(token == '0GHf4Kfxa2CFWJoK')
+        self.assert_expectations(*submit.login_prompt('test/_credentials'))
 
     # testing manual override when credentials file is incorrect
     # def test_003(self, capfd):
     #     login, token = submit.login_prompt('test/_credentials')
     #     sys.stdin = StringIO(u'1\n%s\n%s\n' % (login, token))
-        
+
     #     submit.main(self.parser.parse_args(['-o', './test/model/model.mzn', '-m', './test/_coursera', '-c', './test/_credentials3']))
 
     #     resout, reserr = capfd.readouterr()
     #     assert(output_worked in resout)
+
+
+class TestLoginEnvVars(LoginBase):
+    email_env_var = 'DO_EMAIL_ADDRESS'
+    token_env_var = 'DO_TOKEN'
+
+    def setup_class(self):
+        # Set environment variables
+        self.orig_email_env_var = os.environ.get(self.email_env_var)
+        os.environ[self.email_env_var] = self.expected_email_address
+        self.orig_token_env_var = os.environ.get(self.token_env_var)
+        os.environ[self.token_env_var] = self.expected_token
+
+    def fin_class(self):
+        """
+        Restore or clear environment variables which may have
+        been clobbered by test setup.
+        This is probably over kill. Any change made to the
+        environment could only effect other tests, but better to
+        leave no trace than write sloppy code.
+        """
+        if self.orig_email_env_var is None:
+            del os.environ[self.email_env_var]
+        else:
+            os.environ[self.email_env_var] = self.orig_email_env_var
+
+        if self.orig_token_env_var is None:
+            del os.environ[self.token_env_var]
+        else:
+            os.environ[self.token_env_var] = self.orig_token_env_var
+
+    def test_001(self):
+        self.assert_expectations(*submit.login_prompt(''))
 
 
 class TestPartsPrompt:
