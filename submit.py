@@ -259,11 +259,11 @@ def login_dialog(assignment_key, results, credentials_file_location = '_credenti
         else:
             login, token = login_prompt('')
 
-        code, responce = submit_solution(assignment_key, login, token, results)
+        code, response = submit_solution(assignment_key, login, token, results)
 
-        print('\n== Coursera Responce ...')
+        print('\n== Coursera Response ...')
         #print(code)
-        print(responce)
+        print(response)
         
         if code != 401:
             success = True
@@ -338,24 +338,24 @@ def submit_solution(assignment_key, email_address, token, results):
     try:
         res = urlopen(req, json.dumps(submission).encode('utf8'))
     except HTTPError as e:
-        responce = json.loads(e.read().decode('utf8'))
+        response = json.loads(e.read().decode('utf8'))
 
-        if 'details' in responce and responce['details'] != None and \
-            'learnerMessage' in responce['details']:
-            return e.code, responce['details']['learnerMessage']
+        if 'details' in response and response['details'] != None and \
+            'learnerMessage' in response['details']:
+            return e.code, response['details']['learnerMessage']
         else:
             return e.code, 'Unexpected response code, please contact the ' \
-                               'course staff.\nDetails: ' + responce['message']
+                               'course staff.\nDetails: ' + response['message']
 
     code = res.code
-    responce = json.loads(res.read().decode('utf8'))
+    response = json.loads(res.read().decode('utf8'))
 
     if code >= 200 and code <= 299:
         return code, 'Your submission has been accepted and will be ' \
                      'graded shortly.'
 
     return code, 'Unexpected response code, please contact the '\
-                 'course staff.\nDetails: ' + responce
+                 'course staff.\nDetails: ' + response
 
 
 def main(args):
