@@ -1,5 +1,5 @@
 # Fetch latest ubuntu docker image
-FROM debian:latest
+FROM gcc:latest
 
 # Install Python on the ubuntu image.
 RUN \
