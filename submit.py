@@ -20,6 +20,7 @@ except:
 
 # Python 3:
 try:
+    from time import process_time
     from urllib.parse import urlparse, urlencode
     from urllib.request import urlopen, Request
     from urllib.error import HTTPError
@@ -29,6 +30,8 @@ except:
 import sys
 # Python 2:
 if sys.version_info < (3, 0):
+    def process_time():
+        return time.clock()
     def input(str):
         return raw_input(str)
 
@@ -214,7 +217,7 @@ def output(input_file, solver_file):
 
     solution = ''
 
-    start = time.clock()
+    start = process_time()
     try:
         solution = pkg.solve_it(load_input_data(input_file))
     except Exception as e:
@@ -224,7 +227,7 @@ def output(input_file, solver_file):
         print(str(e))
         print('')
         return 'Local Exception =('
-    end = time.clock()
+    end = process_time()
 
     if not (isinstance(solution, str) or isinstance(solution, unicode)):
         print('Warning: the solver did not return a string.  The given object will be converted with the str() method.')
