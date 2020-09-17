@@ -20,15 +20,18 @@ def solve_it(input_data):
         line = lines[i]
         parts = line.split()
         items.append(Item(i-1, int(parts[0]), int(parts[1])))
+        
+    #sorted(item, key=attrgetter('weight'))
 
     # a trivial algorithm for filling the knapsack
-    # it takes items in-order until the knapsack is full
+    # it takes items in weight order until the knapsack is full
     # this is an example fo a greedy algorithm!
+    
     value = 0
     weight = 0
     taken = [0]*len(items)
 
-    #for item in items:
+    for item in items:
         if weight + item.weight <= capacity:
             taken[item.index] = 1
             value += item.value
