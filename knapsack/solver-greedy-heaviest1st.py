@@ -21,8 +21,9 @@ def solve_it(input_data):
         parts = line.split()
         items.append(Item(i-1, int(parts[0]), int(parts[1])))
         
-    #sorted(item, key=attrgetter('weight'))
-
+	# sort tuple by weight (max to min)
+	items.sort(key=lambda e: -e.weight)
+	
     # a trivial algorithm for filling the knapsack
     # it takes items in weight order until the knapsack is full
     # this is an example fo a greedy algorithm!
