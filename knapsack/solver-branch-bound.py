@@ -31,6 +31,7 @@ def solve_it(input_data):
     for i in range (0,2 ** item_count):
         path = f"{i:b}".zfill(len(f"{(2 ** item_count) - 1:b}"))
         paths.append(Path(int(path[0]), int(path[1]), int(path[2]), int(path[3])))
+    print(paths)    
 ## ??Works for 4 columns tuple - how do I do this for n column tuple??
 
     # a trivial algorithm for filling the knapsack
