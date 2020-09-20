@@ -22,17 +22,13 @@ def solve_it(input_data):
         parts = line.split()
         items.append(Item(i-1, int(parts[0]), int(parts[1])))
 
-# Create tuple for paths for solution
-    names = "x1"
-    for i in range(1, item_count):
-        names = names + ", x" + str(i+1)
-    Path = namedtuple("Paths", names)
-    paths = []
+# Create set for paths for solution - branches represented as binary numbers
+    paths = set()
     for i in range (0,2 ** item_count):
-        path = f"{i:b}".zfill(len(f"{(2 ** item_count) - 1:b}"))
-        paths.append(Path(int(path[0]), int(path[1]), int(path[2]), int(path[3])))
+        path = bin(i)[2:].zfill(4)
+        paths.add(path)
     print(paths)    
-## ??Works for 4 columns tuple - how do I do this for n column tuple??
+
 
     # a trivial algorithm for filling the knapsack
     # it takes items in-order until the knapsack is full
