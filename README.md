@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/discreteoptimization/assignment.svg?branch=master)](https://travis-ci.org/discreteoptimization/assignment)
 [![codecov](https://codecov.io/gh/discreteoptimization/assignment/branch/master/graph/badge.svg)](https://codecov.io/gh/discreteoptimization/assignment)
 
-This repository includes all of the tools required for building, deploying, and grading the assignments in the Discrete Optimization course on Coursera (on the 2nd generation platform).  The code for submission and grading are build in Python and are compatible with versions 2 and 3.  The python unit testing framework pytest and pytest-cov are used to ensure quality control.  Build scripts are used to automatically build student handouts, in the form of zip files, and a Coursera compliant docker image for grading submissions.
+This repository includes all of the tools which required for building, deploying, and grading the assignments in the Discrete Optimization course on Coursera (on the 2nd generation platform).  The code for submission and grading are build in Python and are compatible with versions 2 and 3.  The python unit testing framework pytest and pytest-cov are used to ensure quality control.  Build scripts are used to automatically build student handouts, in the form of zip files, and a Coursera compliant docker image for grading submissions.
 
 
 ## Installation
