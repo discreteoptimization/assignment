@@ -14,6 +14,19 @@ def length(point1, point2):
 def solve_it(input_data):
     # Modify this code to run your optimization algorithm
 
+    customers, facilities, customer_count, facility_count = parse_input(input_data)
+
+    # TODO replace with your solver
+    obj, solution = trivial_solver(customers, facilities, customer_count, facility_count)
+
+    # prepare the solution in the specified output format
+    output_data = '%.2f' % obj + ' ' + str(0) + '\n'
+    output_data += ' '.join(map(str, solution))
+
+    return output_data
+
+
+def parse_input(input_data):
     # parse the input
     lines = input_data.split('\n')
 
@@ -31,6 +44,10 @@ def solve_it(input_data):
         parts = lines[i].split()
         customers.append(Customer(i-1-facility_count, int(parts[0]), Point(float(parts[1]), float(parts[2]))))
 
+    return customers, facilities, customer_count, facility_count
+
+
+def trivial_solver(customers, facilities, _customer_count, _facility_count):
     # build a trivial solution
     # pack the facilities one by one until all the customers are served
     solution = [-1]*len(customers)
@@ -56,11 +73,7 @@ def solve_it(input_data):
     for customer in customers:
         obj += length(customer.location, facilities[solution[customer.index]].location)
 
-    # prepare the solution in the specified output format
-    output_data = '%.2f' % obj + ' ' + str(0) + '\n'
-    output_data += ' '.join(map(str, solution))
-
-    return output_data
+    return obj, solution
 
 
 import sys

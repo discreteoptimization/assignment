@@ -6,6 +6,19 @@ def solve_it(input_data):
     # Modify this code to run your optimization algorithm
 
     # parse the input
+    edges, node_count, edge_count = parse_input(input_data)
+
+    # TODO replace with your solver
+    solution = trivial_solver(edges, node_count, edge_count)
+
+    # prepare the solution in the specified output format
+    output_data = str(node_count) + ' ' + str(0) + '\n'
+    output_data += ' '.join(map(str, solution))
+
+    return output_data
+
+
+def parse_input(input_data):
     lines = input_data.split('\n')
 
     first_line = lines[0].split()
@@ -18,15 +31,14 @@ def solve_it(input_data):
         parts = line.split()
         edges.append((int(parts[0]), int(parts[1])))
 
-    # build a trivial solution
-    # every node has its own color
+    return edges, node_count, edge_count
+
+
+def trivial_solver(_edges, node_count, _edge_count):
+    # a trivial solution, every node has its own color
     solution = range(0, node_count)
 
-    # prepare the solution in the specified output format
-    output_data = str(node_count) + ' ' + str(0) + '\n'
-    output_data += ' '.join(map(str, solution))
-
-    return output_data
+    return solution
 
 
 import sys

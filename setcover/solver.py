@@ -30,7 +30,19 @@ Set = namedtuple("Set", ['index', 'cost', 'items'])
 
 def solve_it(input_data):
     # Modify this code to run your optimization algorithm
+    sets, item_count, set_count = parse_input(input_data)
 
+    # TODO replace with your solver
+    obj, solution = trivial_solver(sets, item_count, set_count)
+
+    # prepare the solution in the specified output format
+    output_data = str(obj) + ' ' + str(0) + '\n'
+    output_data += ' '.join(map(str, solution))
+
+    return output_data
+
+
+def parse_input(input_data):
     # parse the input
     lines = input_data.split('\n')
 
@@ -43,6 +55,10 @@ def solve_it(input_data):
         parts = lines[i].split()
         sets.append(Set(i-1, float(parts[0]), map(int, parts[1:])))
 
+    return sets, item_count, set_count
+
+
+def trivial_solver(sets, item_count, set_count):
     # build a trivial solution
     # pick add sets one-by-one until all the items are covered
     solution = [0]*set_count
@@ -57,11 +73,7 @@ def solve_it(input_data):
     # calculate the cost of the solution
     obj = sum([s.cost*solution[s.index] for s in sets])
 
-    # prepare the solution in the specified output format
-    output_data = str(obj) + ' ' + str(0) + '\n'
-    output_data += ' '.join(map(str, solution))
-
-    return output_data
+    return obj, solution
 
 
 import sys

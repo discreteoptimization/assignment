@@ -7,7 +7,17 @@ Item = namedtuple("Item", ['index', 'value', 'weight'])
 def solve_it(input_data):
     # Modify this code to run your optimization algorithm
 
-    # parse the input
+    items, capacity = parse_input(input_data)
+
+    # TODO replace with your solver
+    taken, objective_value, is_optimal = trivial_solver(items, capacity)
+
+    output_data = str(objective_value) + ' ' + str(is_optimal) + '\n'
+    output_data += ' '.join(map(str, taken))
+    return output_data
+
+
+def parse_input(input_data):
     lines = input_data.split('\n')
 
     firstLine = lines[0].split()
@@ -21,6 +31,10 @@ def solve_it(input_data):
         parts = line.split()
         items.append(Item(i-1, int(parts[0]), int(parts[1])))
 
+    return items, capacity
+
+
+def trivial_solver(items, capacity):
     # a trivial algorithm for filling the knapsack
     # it takes items in-order until the knapsack is full
     value = 0
@@ -32,11 +46,8 @@ def solve_it(input_data):
             taken[item.index] = 1
             value += item.value
             weight += item.weight
-    
-    # prepare the solution in the specified output format
-    output_data = str(value) + ' ' + str(0) + '\n'
-    output_data += ' '.join(map(str, taken))
-    return output_data
+
+    return taken, value, 0
 
 
 if __name__ == '__main__':

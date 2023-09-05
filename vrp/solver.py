@@ -12,6 +12,20 @@ def length(customer1, customer2):
 def solve_it(input_data):
     # Modify this code to run your optimization algorithm
 
+    customers, customer_count, vehicle_count, vehicle_capacity, depot = parse_input(input_data)
+
+  # TODO replace with your solver
+    obj, vehicle_tours = trivial_solver(customers, customer_count, vehicle_count, vehicle_capacity, depot)
+
+    # prepare the solution in the specified output format
+    outputData = '%.2f' % obj + ' ' + str(0) + '\n'
+    for v in range(0, vehicle_count):
+        outputData += str(depot.index) + ' ' + ' '.join([str(customer.index) for customer in vehicle_tours[v]]) + ' ' + str(depot.index) + '\n'
+
+    return outputData
+
+
+def parse_input(input_data):
     # parse the input
     lines = input_data.split('\n')
 
@@ -29,7 +43,10 @@ def solve_it(input_data):
     #the depot is always the first customer in the input
     depot = customers[0] 
 
+    return customers, customer_count, vehicle_count, vehicle_capacity, depot
 
+
+def trivial_solver(customers, customer_count, vehicle_count, vehicle_capacity, depot):
     # build a trivial solution
     # assign customers to vehicles starting by the largest customer demands
     vehicle_tours = []
@@ -65,12 +82,7 @@ def solve_it(input_data):
                 obj += length(vehicle_tour[i],vehicle_tour[i+1])
             obj += length(vehicle_tour[-1],depot)
 
-    # prepare the solution in the specified output format
-    outputData = '%.2f' % obj + ' ' + str(0) + '\n'
-    for v in range(0, vehicle_count):
-        outputData += str(depot.index) + ' ' + ' '.join([str(customer.index) for customer in vehicle_tours[v]]) + ' ' + str(depot.index) + '\n'
-
-    return outputData
+    return obj, vehicle_tours 
 
 
 import sys
