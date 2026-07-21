@@ -402,7 +402,7 @@ def main(args):
                     os.makedirs(directory)
 
                 submission_file_name = directory+'/submission.sub'
-                print('  writting submission file: '+submission_file_name)
+                print('  writing submission file: '+submission_file_name)
                 with open(submission_file_name,'w') as submission_file:
                     submission_file.write(submission['output'])
                     submission_file.close()
@@ -456,4 +456,3 @@ def build_parser():
 if __name__ == '__main__':
     parser = build_parser()
     main(parser.parse_args())
-
